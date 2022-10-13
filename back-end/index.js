@@ -3,17 +3,17 @@
 const cors = require("cors")
 const morgan = require("morgan")
 const methodOverride = require('method-override');
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('db.json');
-const middlewares = jsonServer.defaults();
-// const port = process.env.PORT || 3000;
+// const jsonServer = require('json-server');
+// const server = jsonServer.create();
+// const router = jsonServer.router('db.json');
+// const middlewares = jsonServer.defaults();
+// const port = process.env.PORT || 4000;
 // const session = require("express-session");
 // const MongoStore = require("connect-mongo");
 
 
-server.use(middlewares);
-server.use(router);
+// server.use(middlewares);
+// server.use(router);
 // server.listen(port);
 // import user router
 
@@ -25,9 +25,16 @@ const express = require("express");
 // create application object
 const app = express();
 
+app.get("/", (req, res) => {
+    //res.json let's us send a response as JSON data
+    res.json({
+        response: "Hello World"
+    })
+})
+
 const userController = require('./controllers/user-controller')
 const authController = require('./controllers/auth-controller')
-const chatController = require('./controllers/chat-controller')
+const careerController = require('./controllers/career-controller')
 	
 // MIDDLEWARE
 ////////////////////////////////
@@ -36,7 +43,7 @@ app.use(cors()); // to prevent cors errors, open access to all origins
 app.use(morgan("dev")); // logging for development
 app.use(methodOverride('_method'));
 app.use('/user', userController);
-app.use('/chat', chatController);
+app.use('/career', careerController);
 app.use('/auth', authController);
 
 

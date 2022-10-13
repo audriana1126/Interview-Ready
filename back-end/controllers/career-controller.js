@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User.js');
-const Chat = require('../models/Chat.js');
+const Career = require('../models/Career.js');
 const methodOverride = require('method-override');
 
 
@@ -17,13 +17,13 @@ router.use(methodOverride('_method'));
 router.get('/', async (req, res, next) => {
     try {
         // const user = await User.findById(req.params.id)
-        const allChat = await Chat.find()
-        console.log(allChat)
-        res.status(200).json(allChat)
+        const allCareer = await Career.find()
+        console.log(allCareer)
+        res.status(200).json(allCareer)
         // res.send('Hello world')
-        // const context = { chat: userChat};
-        // console.log(userChat)
-        // res.status(200).json(userChat)
+        // const context = { career: userCareer};
+        // console.log(userCareer)
+        // res.status(200).json(userCareer)
         // res.render(context)
         // res.render('postindex.ejs', context);
     } catch(error) {
@@ -41,7 +41,7 @@ router.get('/', async (req, res, next) => {
 // router.get('/new', async (req, res, next) => {
 //     try {
 //     const allUser = await User.find()
-//     // res.render('newchat.ejs', {User: allUser});
+//     // res.render('newcareer.ejs', {User: allUser});
 //     } catch (error) {
 //         console.log(error);
 //        req.err= error;/1X50Msz.png
@@ -54,7 +54,7 @@ router.get('/', async (req, res, next) => {
 // Create Post
 router.post('/', async (req, res) => {
     try {
-      res.json( await Chat.create(req.body));
+      res.json( await Career.create(req.body));
         // const userId = req.user._id
         // req.body.userId = userId
 

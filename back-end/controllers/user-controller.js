@@ -35,10 +35,10 @@ router.post("/", async (req, res) => {
 });
 
 //UPDATE ROUTE
-router.put("/:id", requireToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
-    handleValidateOwnership(req, await People.findById(req.params.id))
-    const updatUser = await People.findByIdAndUpdate(
+    // router.post(req, await User.findById(req.params.id))
+    const updatUser = await User.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -65,11 +65,6 @@ router.delete("/:id", async (req, res) => {
 }
 });
 
-// // USER UPDATE ROUTE
-// router.put("/:id", async (req, res) => {
-// 	console.log(req.body)
-// 	res.status(200).json({message: "user update route: " + req.params.id })
-// });
 
 
 module.exports = router

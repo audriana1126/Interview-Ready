@@ -2,7 +2,8 @@
     "Careers": [
         {
             "id" : 0,
-            "name": "Software Engineer"
+            "name": "Software Engineer",
+            "requirments" : "need to be a dev"
         },
         {
             "id" : 1,
@@ -38,3 +39,6 @@
         }
     ]
 }
+
+
+

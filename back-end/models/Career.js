@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // const User = require('./users');
 
-const ChatSchema = new mongoose.Schema ({
-    username: {type: String},
+const CareerSchema = new mongoose.Schema ({
+    name: {type: String},
     post: {type: String, required: true, minLength: 1, maxLength: 280},
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -13,9 +13,9 @@ const ChatSchema = new mongoose.Schema ({
 }, 
 {timestamps:true});
 
-const Chat = mongoose.model('Chat', ChatSchema);
+const Career = mongoose.model('Career', CareerSchema);
 
-module.exports = Chat;
+module.exports = Career;
 
 
 
