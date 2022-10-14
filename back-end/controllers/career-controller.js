@@ -1,9 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User.js');
-const Career = require('../models/Career.js');
+const express = require('express')
+const router = express.Router()
+const {Career} = require('../models/Career')
+const { handleValidateOwnership, requireToken } = require("../middleware/auth");
 const methodOverride = require('method-override');
-
 
 // Middleware
 
