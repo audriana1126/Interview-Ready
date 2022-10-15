@@ -7,15 +7,22 @@ const { User } = require("../models");
 
 router.post("/register", async (req, res) => {
     try {
+        let userInfo = req.body;
+        let foundUser = await Users.exists({email: userInfo.email});
+        if (foundUser) {
+          return res.redirect("/login");
+        }
         const salt = await bcrypt.genSalt(10); // 10 (from docs) -> number of times its hashed, unique string (num tied to performance), genSalt returns promise
         const passwordHash = await bcrypt.hash(req.body.password, salt); 
         req.body.password = passwordHash; // override req.body from form (console.log(req.body))
         const newUser = await User.create(req.body);
-        res.send(newUser)
+        // res.send(newUser)
+        return res.redirect('/login');
+
         //status(200).json({currentUser: newUser, isLoggedIn: true, token}); // * userDoc gets sent to front end and then gets transformed 
 // res.status(200).json({ message: 'hitting auth route' }) - test route    
     } catch (error) {
-        res.status(400).json(error);
+        res.status(400).json("try again");
     }
 });
 
