@@ -64,9 +64,12 @@ app.use('/auth', authController);
 io.on('connection', (socket)=>{
     console.log('connected to socket')
 
-    socket.on('chat-room', (name)=>{
-        console.log(name)
-        socket.emit('chat-room', `${name} the boss`)
+    socket.join('chat')
+    socket.data.id = socket.id; 
+
+    socket.on('typing', (username)=>{
+        console.log(username)
+        socket.emit('typing-response', username)
     })
 })
 
