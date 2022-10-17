@@ -45,6 +45,7 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.post("/login", async (req, res) => {
+    console.log('login request body',req.body)
     try {
       const loggingUser = req.body.username; //get username
       const foundUser = await User.findOne({ username: loggingUser }); 
