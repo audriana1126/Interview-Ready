@@ -65,12 +65,51 @@ io.on('connection', (socket)=>{
     console.log('connected to socket')
 
     socket.join('chat')
-    socket.data.id = socket.id; 
+    //socket.data.id = socket.id; 
 
-    socket.on('typing', (username)=>{
+    socket.on('typing', ({sender, username})=>{
         console.log(username)
-        socket.emit('typing-response', username)
+        //socket.emit('typing-response', username)
+        socket.broadcast.emit('typing-response', username)
+        //socket.to(sender).emit('typing-response', username)
     })
+
+    socket.on('message', (msgObj)=>{
+        socket.broadcast.emit('display-mesage', msgObj)
+    })
+
+    socket.on('join-software-engineer-room', ()=>{
+        socket.join('software-engineer')
+        socket.emit('go-to-software-engineer-room')
+    })
+
+    socket.on('join-ui-ux-room', ()=>{
+        socket.join('ui-ux')
+        socket.emit('go-to-ui-ux-room')
+    })
+
+    socket.on('join-data-analyst-room', ()=>{
+        socket.join('data-analyst')
+        socket.emit('go-to-data-analyst-room')
+    })
+
+    socket.on('se-message', (msgObj)=>{
+        console.log('SE Object', msgObj)
+       // io.to("software-engineer").emit("se-display-message", msgObj);
+        socket.broadcast.emit('se-display-message', msgObj)
+    })
+
+    socket.on('ui-message', (msgObj)=>{
+        //io.to("ui-ux").emit("ui-display-message", msgObj);
+        socket.broadcast.emit('se-display-message', msgObj)
+    })
+
+    socket.on('da-message', (msgObj)=>{
+        //io.to("data-analyst").emit("da-display-message", msgObj);
+        socket.broadcast.emit('se-display-message', msgObj)
+    })
+
+
 })
 
 
